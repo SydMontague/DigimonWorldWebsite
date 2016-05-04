@@ -1,0 +1,121 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>Statsgain calculator</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
+    <link rel="stylesheet" href="style.css" type="text/css"></link>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="digimon.js"></script>
+    <script>
+      /* do stuff when the body is ready */
+      $("body").ready(function() {
+        $("#form").change(updateStatsgainText);
+        $("#target").css("background-image", "url('./imgs/" + getDigimon($("#target").val()).name + ".gif')");
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <fieldset>
+          <dl>
+            <dt>
+              <label for="target">Target Digimon</label>
+            </dt>
+            <dd>
+              <select name="Target Digimon" id="target" class="digimon digimonList" style="background-image: url('./imgs/Botamon.gif')">
+              </select>
+            </dd>
+          </dl>
+                
+          <p class="header">Current Stats</p>
+            
+          <dl>
+            <dt>
+              <label for="hp">HP</label>
+            </dt>
+            <dd>
+              <input type="number" id="hp" min="0" max="9999">
+            </dd>
+          </dl>
+            
+          <dl>
+            <dt>
+              <label for="mp">MP</label>
+            </dt>
+            <dd>
+              <input type="number" id="mp" min="0" max="9999">
+            </dd>
+          </dl>
+            
+          <dl>
+            <dt>
+              <label for="offense">Offense</label>
+            </dt>
+            <dd>
+              <input type="number" id="offense" min="0" max="999">
+            </dd>
+          </dl>
+            
+          <dl>
+            <dt>
+              <label for="defense">Defense</label>
+            </dt>
+            <dd>
+              <input type="number" id="defense" min="0" max="999">
+            </dd>
+          </dl>
+            
+          <dl>
+            <dt>
+              <label for="speed">Speed</label>
+            </dt>
+            <dd>
+              <input type="number" id="speed" min="0" max="999">
+            </dd>
+          </dl>
+            
+          <dl>
+            <dt>
+              <label for="brains">Brains</label>
+            </dt>
+            <dd>
+              <input type="number" id="brains" min="0" max="999">
+            </dd>
+          </dl>
+        </fieldset>
+      </form>
+      
+      <div class="output">
+        <fieldset>
+          <dl>        
+            <h1>Stats after evolution</h1>
+          </dl>
+          <dl>
+            <dt>HP:</dt>
+            <dd id="gainHP">N/A</dd>
+          </dl>
+          <dl>
+            <dt>MP:</dt>
+            <dd id="gainMP">N/A</dd>
+          </dl>
+          <dl>
+            <dt>Offense:</dt>
+            <dd id="gainOff">N/A</dd>
+          </dl>
+          <dl>
+            <dt>Defense:</dt>
+            <dd id="gainDef">N/A</dd>
+          </dl>
+          <dl>
+            <dt>Speed:</dt>
+            <dd id="gainSpeed">N/A</dd>
+          </dl>
+          <dl>
+            <dt>Brains:</dt>
+            <dd id="gainBrains">N/A</dd>
+          </dl>
+      </div>
+    </div>
+  </body>
+</html>

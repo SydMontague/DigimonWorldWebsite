@@ -1,0 +1,175 @@
+<!Doctype html>
+<html>
+<head>
+  <title>Evolution Tool</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
+  <link rel="stylesheet" href="style.css" type="text/css"></link>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="digimon.js"></script>
+    <script>
+      /* do stuff when the body is ready */
+      $("body").ready(function() {
+        $("#form").change(updateEvolutionText);
+        
+        $("#current").css("background-image", "url('./imgs/" + getDigimon($("#current").val()).name + ".gif')");
+        $("#target").css("background-image", "url('./imgs/" + getDigimon($("#target").val()).name + ".gif')");
+      });
+    </script>
+</head>
+<body>
+<div class="container">
+  <h2>
+  Welcome to our evolution tool. Enter your stats, the Digimon you have and the Digimon you want and it will tell you your current progress towards that evolution.<br />
+  It will also show you the priority scores and what Digimon is currently enabled by the priority system.
+  </h1>
+  <!-- And forgive me for the horrible code I'm not a Web/Frontend dev and too lazy to refactor it... -->
+</div>
+
+<div class="container">
+
+  <form id="form">
+    <fieldset>    
+    
+      <p class="header">Digimon Selection</p>
+      <dl>
+        <dt>
+          <label for="current">Current Digimon</label>
+        </dt>
+        <dd>
+          <select name="Current Digimon" id="current" class="digimon digimonList">
+          </select>
+        </dd>
+      </dl>
+      
+      <dl>
+        <dt>
+          <label for="target">Target Digimon</label>
+        </dt>
+        <dd>
+          <select name="Target Digimon" id="target" class="digimon digimonList">
+          </select>
+        </dd>
+      </dl>
+        
+      <p class="header">Main Criteria</p>
+        
+      <dl>
+        <dt>
+          <label for="hp">HP</label>
+        </dt>
+        <dd>
+          <input type="number" id="hp" min="0" max="9999">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="mp">MP</label>
+        </dt>
+        <dd>
+          <input type="number" id="mp" min="0" max="9999">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="offense">Offense</label>
+        </dt>
+        <dd>
+          <input type="number" id="offense" min="0" max="999">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="defense">Defense</label>
+        </dt>
+        <dd>
+          <input type="number" id="defense" min="0" max="999">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="speed">Speed</label>
+        </dt>
+        <dd>
+          <input type="number" id="speed" min="0" max="999">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="brains">Brains</label>
+        </dt>
+        <dd>
+          <input type="number" id="brains" min="0" max="999">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="care">Care Mistakes</label>
+        </dt>
+        <dd>
+          <input type="number" id="care" min="0" max="65335">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="weight">Weight</label>
+        </dt>
+        <dd>
+          <input type="number" id="weight" min="0" max="99">
+        </dd>
+      </dl>
+        
+      <p class="header">Bonus Criteria</p>
+      
+      <dl>
+        <dt>
+          <label for="happy">Happiness</label>
+        </dt>
+        <dd>
+          <input type="number" id="happy" min="-100" max="100">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="discipline">Discipline</label>
+        </dt>
+        <dd>
+          <input type="number" id="discipline" min="0" max="100">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="battles">Battles</label>
+        </dt>
+        <dd>
+          <input type="number" id="battles" min="0" max="65335">
+        </dd>
+      </dl>
+        
+      <dl>
+        <dt>
+          <label for="techs">No. of Techniques</label>
+        </dt>
+        <dd>
+          <input type="number" id="techs" min="0" max="56">
+        </dd>
+      </dl>
+    </fieldset>
+  </form>
+  
+  <div id="output">
+  </div>
+</div>
+<div class="container">
+  There are several evolutions not included in this tool due to their special nature. We will eventually list these evolutions and how to achieve them on another page.
+</div>
+</body>
+</html>
