@@ -4,6 +4,7 @@
     <title>Statsgain calculator</title>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
     <link rel="stylesheet" href="style.css" type="text/css"></link>
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="digimon.js"></script>
     <script>
@@ -11,6 +12,7 @@
       $("body").ready(function() {
         $("#form").change(updateStatsgainText);
         $("#target").css("background-image", "url('./imgs/" + getDigimon($("#target").val()).name + ".gif')");
+        
       });
     </script>
   </head>
@@ -93,27 +95,27 @@
           </dl>
           <dl>
             <dt>HP:</dt>
-            <dd id="gainHP">N/A</dd>
+            <dd id="gainhp">N/A</dd>
           </dl>
           <dl>
             <dt>MP:</dt>
-            <dd id="gainMP">N/A</dd>
+            <dd id="gainmp">N/A</dd>
           </dl>
           <dl>
             <dt>Offense:</dt>
-            <dd id="gainOff">N/A</dd>
+            <dd id="gainoffense">N/A</dd>
           </dl>
           <dl>
             <dt>Defense:</dt>
-            <dd id="gainDef">N/A</dd>
+            <dd id="gaindefense">N/A</dd>
           </dl>
           <dl>
             <dt>Speed:</dt>
-            <dd id="gainSpeed">N/A</dd>
+            <dd id="gainspeed">N/A</dd>
           </dl>
           <dl>
             <dt>Brains:</dt>
-            <dd id="gainBrains">N/A</dd>
+            <dd id="gainbrains">N/A</dd>
           </dl>
       </div>
     </div>

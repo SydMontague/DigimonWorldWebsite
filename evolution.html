@@ -4,17 +4,22 @@
   <title>Evolution Tool</title>
   <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
   <link rel="stylesheet" href="style.css" type="text/css"></link>
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="digimon.js"></script>
-    <script>
-      /* do stuff when the body is ready */
-      $("body").ready(function() {
-        $("#form").change(updateEvolutionText);
-        
-        $("#current").css("background-image", "url('./imgs/" + getDigimon($("#current").val()).name + ".gif')");
-        $("#target").css("background-image", "url('./imgs/" + getDigimon($("#target").val()).name + ".gif')");
-      });
-    </script>
+  <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
+  <script type="text/javascript" src="digimon.js"></script>
+  <script>
+    /* do stuff when the body is ready */
+    $("body").ready(function() {
+      $("#form").change(function() {
+        updateEvolutionText();
+        addPriorityTable();
+       });
+      
+      $("#current").css("background-image", "url('./imgs/" + getDigimon($("#current").val()).name + ".gif')");
+      $("#target").css("background-image", "url('./imgs/" + getDigimon($("#target").val()).name + ".gif')");
+    });
+  </script>
 </head>
 <body>
 <div class="container">
@@ -58,7 +63,7 @@
           <label for="hp">HP</label>
         </dt>
         <dd>
-          <input type="number" id="hp" min="0" max="9999">
+          <input type="number" id="hp" min="1" max="9999">
         </dd>
       </dl>
         
@@ -67,7 +72,7 @@
           <label for="mp">MP</label>
         </dt>
         <dd>
-          <input type="number" id="mp" min="0" max="9999">
+          <input type="number" id="mp" min="1" max="9999">
         </dd>
       </dl>
         
@@ -76,7 +81,7 @@
           <label for="offense">Offense</label>
         </dt>
         <dd>
-          <input type="number" id="offense" min="0" max="999">
+          <input type="number" id="offense" min="1" max="999">
         </dd>
       </dl>
         
@@ -85,7 +90,7 @@
           <label for="defense">Defense</label>
         </dt>
         <dd>
-          <input type="number" id="defense" min="0" max="999">
+          <input type="number" id="defense" min="1" max="999">
         </dd>
       </dl>
         
@@ -94,7 +99,7 @@
           <label for="speed">Speed</label>
         </dt>
         <dd>
-          <input type="number" id="speed" min="0" max="999">
+          <input type="number" id="speed" min="1" max="999">
         </dd>
       </dl>
         
@@ -103,7 +108,7 @@
           <label for="brains">Brains</label>
         </dt>
         <dd>
-          <input type="number" id="brains" min="0" max="999">
+          <input type="number" id="brains" min="1" max="999">
         </dd>
       </dl>
         
@@ -121,7 +126,7 @@
           <label for="weight">Weight</label>
         </dt>
         <dd>
-          <input type="number" id="weight" min="0" max="99">
+          <input type="number" id="weight" min="1" max="99">
         </dd>
       </dl>
         
@@ -129,10 +134,10 @@
       
       <dl>
         <dt>
-          <label for="happy">Happiness</label>
+          <label for="happiness">Happiness</label>
         </dt>
         <dd>
-          <input type="number" id="happy" min="-100" max="100">
+          <input type="number" id="happiness" min="-100" max="100">
         </dd>
       </dl>
         
@@ -156,10 +161,10 @@
         
       <dl>
         <dt>
-          <label for="techs">No. of Techniques</label>
+          <label for="techniques">No. of Techniques</label>
         </dt>
         <dd>
-          <input type="number" id="techs" min="0" max="56">
+          <input type="number" id="techniques" min="0" max="56">
         </dd>
       </dl>
     </fieldset>
@@ -167,9 +172,12 @@
   
   <div id="output">
   </div>
+  <div id="table">
+  </div>
 </div>
 <div class="container">
-  There are several evolutions not included in this tool due to their special nature. We will eventually list these evolutions and how to achieve them on another page.
+  There are several evolutions not included in this tool due to their special nature. They're listed <a href="https://docs.google.com/document/d/1Z5-7RhC42F51EdXtMpzbOZ9QL8WKxPLhHh3_-XMDPdU/" target="_blank">here</a>.<br />
+  Ginoshie also made videos how to get them on his <a href="https://www.youtube.com/channel/UC170yE3VHur_9JjWM0mb7VA" target="_blank">YouTube Channel</a>.
 </div>
 </body>
 </html>

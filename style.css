@@ -52,7 +52,7 @@ fieldset dd {
   font-weight: 600;
 }
 
-#output {
+#output, #table {
   width: 800px;
   float: left;
   margin-left: 50px;
@@ -94,6 +94,20 @@ input[type="number"] {
 .priority {
   border-collapse: collapse;
   border-color: #333333;
+}
+
+.requirements {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+}
+
+.fulfilled {
+  border: solid 2px rgba(0, 255, 0, 1);
+}
+
+.notFulfilled {
+  border: solid 2px rgba(255, 0, 0, 1);
 }
 
 td, th, tr {
