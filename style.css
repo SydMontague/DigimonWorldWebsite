@@ -115,3 +115,7 @@ td, th, tr {
   border-color: #dddddd;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
 }
+
+#careLabel, #happinessLabel, #disciplineLabel, #battleLabel {
+  text-decoration: underline dotted;
+}
