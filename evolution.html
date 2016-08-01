@@ -18,6 +18,27 @@
       
       $("#current").css("background-image", "url('./imgs/" + getDigimon($("#current").val()).name + ".gif')");
       $("#target").css("background-image", "url('./imgs/" + getDigimon($("#target").val()).name + ".gif')");
+      
+      $("#careLabel").tooltip({items: "label", content: function() {
+          return "Gets reset on evolution<br>Care mistakes are: <ul><li>pooping on the floor<li>not sleeping an entire day</li><li>not feeding till the bubble disappears</li></ul>Everything else is not a care mistake!";
+          }
+        }      
+      );
+      $("#happinessLabel").tooltip({items: "label", content: function() {
+          return "<ul><li>Gets reset on evolution</li><li>Ranges from -100 to 100</li><li>100 is a yellow face with a blue bar</li><li>0 is a yellow face with red bar.</li></ul>";
+          }
+        }      
+      );
+      $("#disciplineLabel").tooltip({items: "label", content: function() {
+          return "<ul><li>Gets reset on evolution</li><li>Ranges from 0 to 100</li><li>100 is a yellow face with a blue bar</li><li>50 is a yellow face with red bar.</li>";
+          }
+        }      
+      );
+      $("#battleLabel").tooltip({items: "label", content: function() {
+          return "<ul><li>Gets reset on evolution!</li><li>Only won battles count.</li></ul>";
+          }
+        }      
+      );
     });
   </script>
 </head>
@@ -114,7 +135,7 @@
         
       <dl>
         <dt>
-          <label for="care">Care Mistakes</label>
+          <label id="careLabel" for="care">Care Mistakes</label>
         </dt>
         <dd>
           <input type="number" id="care" min="0" max="65335">
@@ -134,7 +155,7 @@
       
       <dl>
         <dt>
-          <label for="happiness">Happiness</label>
+          <label id="happinessLabel" for="happiness">Happiness</label>
         </dt>
         <dd>
           <input type="number" id="happiness" min="-100" max="100">
@@ -143,7 +164,7 @@
         
       <dl>
         <dt>
-          <label for="discipline">Discipline</label>
+          <label id="disciplineLabel" for="discipline">Discipline</label>
         </dt>
         <dd>
           <input type="number" id="discipline" min="0" max="100">
@@ -152,7 +173,7 @@
         
       <dl>
         <dt>
-          <label for="battles">Battles</label>
+          <label id="battleLabel" for="battles">Battles</label>
         </dt>
         <dd>
           <input type="number" id="battles" min="0" max="65335">
