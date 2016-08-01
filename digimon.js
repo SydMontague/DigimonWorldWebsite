@@ -541,7 +541,7 @@ function addPriorityTable() {
 
   var appendString = "<table class='priority'>";
   
-  appendString += "<tr><th>Digimon</th><th>Score</th><th colspan='3'>Requirement</th><th>Enabled</th></tr>";
+  appendString += "<tr><th colspan='2'>Digimon</th><th>Score</th><th id='requirementHeader' colspan='3' title='You need to fulfill 3 of these 4 requirements.'>Requirement</th><th>Enabled</th></tr>";
   
   var prioritized = current.level == Level.In_Training ? getPrioritizedRookie(stats, enabled) : getPrioritizedDigimon(scores, enabled);
   
@@ -553,7 +553,7 @@ function addPriorityTable() {
     if(v == prioritized)
       appendString += " class='prioritized'";
       
-    appendString += "><td>" + v + "</td><td class='score'>" + scores[v] + "</td><td>";
+    appendString += "><td><img src='./imgs/" + v + ".png' /></td><td>" + v + "</td><td class='score'>" + scores[v] + "</td><td>";
     appendString += "<div class='" + (getDigimon(v).requirements.fulfillStats(stats) ? "fulfilled" : "notFulfilled") + "'>";
     appendString += getDigimon(v).requirements.getPriorityStats();
     appendString += "</div></td>";
