@@ -297,7 +297,7 @@ Digimons["Gabumon"] = new Digimon("Gabumon", Level.Rookie, new StatsGains(500, 5
 Digimons["Garurumon"] = new Digimon("Garurumon", Level.Champion, new StatsGains(1500, 1500, 150, 200, 150, 150), new EvolutionRequirements(0, 1000, 0, 0, 100, 0, 1, 30, 90, 0, -1, 28, true, false));
 Digimons["Giromon"] = new Digimon("Giromon", Level.Ultimate, new StatsGains(3000, 3000, 600, 600, 500, 600), new EvolutionRequirements(0, 0, 400, 0, 300, 400, 15, 5, 0, 95, 100, 35, false, false));
 Digimons["Greymon"] = new Digimon("Greymon", Level.Champion, new StatsGains(2000, 1500, 200, 200, 200, 200), new EvolutionRequirements(0, 0, 100, 100, 100, 100, 1, 30, 90, 0, -1, 35, true, false));
-Digimons["H-Kabuterimon"] = new Digimon("H-Kabuterimon", new StatsGains(5000, 5000, 500, 500, 500, 500), new EvolutionRequirements(7000, 0, 400, 600, 400, 0, 5, 55, 0, 0, 0, 40, true, true));
+Digimons["H-Kabuterimon"] = new Digimon("H-Kabuterimon", Level.Ultimate, new StatsGains(5000, 5000, 500, 500, 500, 500), new EvolutionRequirements(7000, 0, 400, 600, 400, 0, 5, 55, 0, 0, 0, 40, true, true));
 Digimons["Kabuterimon"] = new Digimon("Kabuterimon", Level.Champion, new StatsGains(2000, 1500, 200, 200, 200, 100), new EvolutionRequirements(1000, 1000, 100, 0, 100, 0, 1, 30, 0, 0, -1, 35, true, false, "Kunemon"));
 Digimons["Kokatorimon"] = new Digimon("Kokatorimon", Level.Champion, new StatsGains(2500, 1500, 100, 150, 150, 150), new EvolutionRequirements(1000, 0, 0, 0, 0, 0, 3, 30, 0, 0, -1, 28, false, false, "Biyomon"));
 Digimons["Koromon"] = new Digimon("Koromon", Level.In_Training, new StatsGains(0, 0, 0, 0, 0, 0), new EvolutionRequirements(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, false, false));
@@ -579,7 +579,7 @@ function addPriorityTable() {
 
 function getPrioritizedRookie(stats, enabled) {
   var digi;
-  var highest = 0;
+  var highest = -1;
   
   for(var key in stats) {
     var val = stats[key] / (key == "hp" || key == "mp" ? 10 : 1);
@@ -608,7 +608,7 @@ function getPrioritizedDigimon(scores, enabled) {
     if(isSpecialEvolution(getDigimon(v)) || !enabled[v])
       continue;
       
-    if(scores[v] > (digi === undefined ? 0 : scores[digi]))
+    if(scores[v] > (digi === undefined ? -1 : scores[digi]))
       digi = v;
     else
       return digi;
