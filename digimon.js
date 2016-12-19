@@ -100,9 +100,9 @@ function EvolutionRequirements (hp, mp, offense, defense, speed, brains, care, w
     return false;
   }
     
-  this.calculatePriorityValue = function(stats) {
-    var statsSum = 0;
-    var statsCounter = 0;
+  this.calculatePriorityValue = function(stats, carryStat, carryCount) {
+    var statsSum = carryStat;
+    var statsCounter = carryCount;
     
     for(var key in this.requiredStats) {
       if(this.requiredStats[key] != 0 && !isNaN(stats[key])) {
@@ -114,6 +114,17 @@ function EvolutionRequirements (hp, mp, offense, defense, speed, brains, care, w
     var score = Math.floor(statsSum / statsCounter);
     return isNaN(score) ? 0 : score;
   };
+  
+  this.requiredStatCount = function() {
+    var statsCounter = 0;
+    for(var key in this.requiredStats) {
+      if(this.requiredStats[key] != 0) {
+        statsCounter++;      
+      }
+    }
+    
+    return statsCounter;
+  }
     
   this.getPriorityStats = function() {      
     var string = "";
@@ -523,9 +534,34 @@ function addPriorityTable() {
     bonus[bonusTypes[key]] = $("#" + bonusTypes[key]).val();
   }
   
+  var carryStat = 0;
+  var carryCount = 0;
+  var maxStat = 0;
+  var digimon;
+  
   for(var v in targets) {
-    if(current.level != Level.In_Training)
-      scores[targets[v]] = getDigimon(targets[v]).requirements.calculatePriorityValue(stats);
+    enabled[targets[v]] = getDigimon(targets[v]).fulfillsRequirements(stats, care, weight, bonus);
+  }
+  
+  
+  for(var v in targets) {
+    if(current.level != Level.In_Training) {
+      if(!enabled[targets[v]]) {
+        scores[targets[v]] = 0;
+        continue;
+      }
+      
+      carryStat = getDigimon(targets[v]).requirements.calculatePriorityValue(stats, carryStat, carryCount);
+      carryCount += getDigimon(targets[v]).requirements.requiredStatCount();
+      
+      scores[targets[v]] = carryStat;
+      
+      if(carryStat > maxStat) {
+        maxStat = carryStat;
+        carryStat = 0;
+        carryCount = 0;
+      }
+    }
     else {
       scores[targets[v]] = 0;
       for(var key in getDigimon(targets[v]).requirements.requiredStats)
@@ -536,7 +572,6 @@ function addPriorityTable() {
       }
     
     }
-    enabled[targets[v]] = getDigimon(targets[v]).fulfillsRequirements(stats, care, weight, bonus);
   }
 
   var appendString = "<table class='priority'>";
@@ -610,8 +645,6 @@ function getPrioritizedDigimon(scores, enabled) {
       
     if(scores[v] > (digi === undefined ? -1 : scores[digi]))
       digi = v;
-    else
-      return digi;
   }
   
   return digi;
