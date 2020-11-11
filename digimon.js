@@ -131,7 +131,7 @@ function EvolutionRequirements (hp, mp, offense, defense, speed, brains, care, w
     
     for(var key in this.requiredStats) {
       if(this.requiredStats[key] != 0) {
-        string += "<img src='./imgs/" + key + ".png' width='22' title='≥" + this.requiredStats[key] + " " + statNames[key] + "' />";
+        string += "<img src='./imgs/" + key + ".png' width='32' title='≥" + this.requiredStats[key] + " " + statNames[key] + "' />";
       }
     }
     
@@ -139,30 +139,30 @@ function EvolutionRequirements (hp, mp, offense, defense, speed, brains, care, w
   }
   
   this.getCareImage = function() {
-    return "<img src='./imgs/care.png' width='22' title='" + (this.minCare ? "≤" : "≥") + this.care + " Care Mistakes' />";
+    return "<img src='./imgs/care.png' width='32' title='" + (this.minCare ? "≤" : "≥") + this.care + " Care Mistakes' />";
   }
   
   this.getWeightImage = function() {
-    return "<img src='./imgs/weight.png' width='22' title='" + (this.weight-5) + " to " + (this.weight+5) + " Weight' />";
+    return "<img src='./imgs/weight.png' width='32' title='" + (this.weight-5) + " to " + (this.weight+5) + " Weight' />";
   }
   
   this.getBonusImages = function() {
     var string = "";
     
     if(this.digimonBonus != undefined)
-      string += "<img src='./imgs/" + this.digimonBonus + ".png' width='22' title='Have " + this.digimonBonus + " as Partner' />"
+      string += "<img src='./imgs/" + this.digimonBonus + ".png' width='32' title='Have " + this.digimonBonus + " as Partner' />"
       
     if(this.battles >= 0)
-      string += "<img src='./imgs/battle.png' width='22' title='" + (this.minBattles ? "≤" : "≥") + this.battles + " Battles' />";
+      string += "<img src='./imgs/battle.png' width='32' title='" + (this.minBattles ? "≤" : "≥") + this.battles + " Battles' />";
       
     if(this.discipline != 0)
-      string += "<img src='./imgs/discipline.png' width='22' title='≥" + this.discipline + " Discipline' />";
+      string += "<img src='./imgs/discipline.png' width='32' title='≥" + this.discipline + " Discipline' />";
       
     if(this.happiness != 0)
-      string += "<img src='./imgs/happiness.png' width='22' title='≥" + this.happiness + " Happiness' />";
+      string += "<img src='./imgs/happiness.png' width='32' title='≥" + this.happiness + " Happiness' />";
       
     if(this.techs != 0)
-      string += "<img src='./imgs/techniques.png' width='22' title='≥" + this.techs + " Techniques' />";
+      string += "<img src='./imgs/techniques.png' width='32' title='≥" + this.techs + " Techniques' />";
       
     return string;
   }
@@ -287,7 +287,7 @@ var Digimons = {};
 
 //Digimons["name"] = new Digimon("Name", new StatsGains(HP, MP, Off, Def, Spd, Brains), (hp, mp, offense, defense, speed, brains, care, weight, discipline, happiness, battles, techs, minCare, minBattles, digimonBonus));
 //Digimons["name"] = new Digimon("Name", new StatsGains(HP, MP, Off, Def, Spd, Brains), new EvolutionRequirements(HP, MP, Off, Def, Spd, Brains, Care, Weight, battles, techs, Happy, Disc, minBattles, minCare, digimonBonus));
-Digimons["Agumon"] = new Digimon("Agumon", Level.Rookie, new StatsGains(1000, 500, 100, 50, 50, 50), new EvolutionRequirements(10, 10, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, false, false));
+Digimons["Agumon"] = new Digimon("Agumon", Level.Rookie, new StatsGains(1000, 500, 100, 50, 50, 50), new EvolutionRequirements(10, 10, 1, 0, 0, 0, 0, 15, 0, 0, -1, 0, false, false, "Koromon"));
 Digimons["Airdramon"] = new Digimon("Airdramon", Level.Champion, new StatsGains(1500, 2000, 150, 150, 200, 200), new EvolutionRequirements(0, 1000, 0, 0, 100, 100, 1, 30, 90, 0, -1, 35, true, false));
 Digimons["Andromon"] = new Digimon("Andromon", Level.Ultimate, new StatsGains(4000, 6000, 400, 600, 400, 600), new EvolutionRequirements(2000, 4000, 200, 400, 200, 400, 5, 40, 95, 0, 30, 30, true, false));
 Digimons["Angemon"] = new Digimon("Angemon", Level.Champion, new StatsGains(1500, 2000, 150, 150, 150, 250), new EvolutionRequirements(0, 1000, 0, 0, 0, 100, 0, 20, 0, 0, -1, 35, true, false, "Patamon"));
@@ -441,7 +441,7 @@ function updateEvolutionText() {
       output.append("<p>You require " + (target.requirements.care - care) + " more care mistakes.</p>");
     }
     else if(target.requirements.fulfillCare(care) && target.requirements.minCare) {
-      output.append("<p>You are allowed to do " + (target.requirements.care - care) + " more care mistakes.</p>");
+      output.append("<p>You must stay below " + (target.requirements.care - care) + " care mistakes.</p>");
     }
     
     //bonus text
@@ -588,7 +588,7 @@ function addPriorityTable() {
     if(v == prioritized)
       appendString += " class='prioritized'";
       
-    appendString += "><td><img src='./imgs/" + v + ".png' /></td><td>" + v + "</td><td class='score'>" + scores[v] + "</td><td>";
+    appendString += "><td><img src='./imgs/" + v + ".png' width='32'/></td><td>" + v + "</td><td class='score'>" + scores[v] + "</td><td>";
     appendString += "<div class='" + (getDigimon(v).requirements.fulfillStats(stats) ? "fulfilled" : "notFulfilled") + "'>";
     appendString += getDigimon(v).requirements.getPriorityStats();
     appendString += "</div></td>";

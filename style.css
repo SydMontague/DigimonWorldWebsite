@@ -11,6 +11,18 @@ h1, h2 {
   text-align: center;
 }
 
+h1 {
+  font-size: 1.4em;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+.warning {
+  color: #EE5533;
+}
+
 .title {
   font-size: 16px;
   font-weight: 600;
